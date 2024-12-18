@@ -1,0 +1,12 @@
+specVersion: "v1beta"
+serviceId: "customizable-forms"
+location: "us-central1"
+schema:
+  source: "./schema"
+  datasource:
+    postgresql:
+      database: "fdcdb"
+      cloudSql:
+        instanceId: "customizable-forms-fdc"
+      # schemaValidation: "COMPATIBLE"
+connectorDirs: ["./connector"]
