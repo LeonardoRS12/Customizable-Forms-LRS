@@ -1,0 +1,67 @@
+@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;500;600;900&display=swap);
+
+/* Global Styles */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+
+scroll-behavior: smooth;
+
+}
+
+:root[data-theme='light'] {
+  --primary-color: #284adf;
+  --hover-color: #1e37a9;
+  --danger-color: #ff4b4b;
+  --text-color: #333;
+  --secondary-text-color: #a8a8a8;
+  --background-color: rgba(255, 255, 255, 0.9);
+  --border-color: #ccc;
+  --border-radius: 10px;
+}
+
+:root[data-theme='dark'] {
+  --primary-color: #1e1e2f;
+  --hover-color: #3a3a4f;
+  --danger-color: #ff4b4b;
+  --text-color: #e4e4e4;
+  --secondary-text-color: #a8a8a8;
+  --background-color: #333;
+  --border-color: #555;
+  --border-radius: 10px;
+}
+
+.formBuilder {
+  margin: 20px;
+  padding: 20px;
+  background-color: var(--bg-color);
+  min-height: 100vh;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.element {
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 5px;
+}
+
+.formPreview {
+  margin-top: 20px;
+}
