@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getDatabase, ref, set } from "firebase/database"; // Import Firebase Database functions
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
@@ -15,6 +16,7 @@ const Register = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     const auth = getAuth();
+    const db = getDatabase(); // Initialize Realtime Database
     setError("");
     setLoading(true);
 
@@ -31,7 +33,22 @@ const Register = () => {
     }
 
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      // Store user information in Realtime Database
+      await set(ref(db, `users/${user.uid}`), {
+        email: user.email,
+        createdAt: new Date().toISOString(),
+      })
+      .then(() => {
+        console.log("User added to database");
+      })
+      .catch((error) => {
+        console.error("Error writing to database:", error);
+        setError("Failed to store user information.");
+      });
+
       alert("Registration successful!");
       navigate("/login-signup");
     } catch (err) {
