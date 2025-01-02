@@ -2,6 +2,7 @@
   "name": "customizable-forms",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@firebasegen/default-connector": "file:dataconnect-generated/js/default-connector",
     "bootstrap": "^5.3.3",
