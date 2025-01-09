@@ -5,7 +5,6 @@ import { setDoc, doc } from "firebase/firestore";
 const FormBuilder = () => {
   const [formElements, setFormElements] = useState([]);
 
-  // Add a new form element
   const addElement = (type) => {
     const newElement = {
       id: Date.now(),
@@ -18,14 +17,12 @@ const FormBuilder = () => {
     setFormElements([...formElements, newElement]);
   };
 
-  // Update an element's properties
   const updateElement = (id, key, value) => {
     setFormElements((elements) =>
       elements.map((el) => (el.id === id ? { ...el, [key]: value } : el))
     );
   };
 
-  // Add a new option for radio/checkbox fields
   const addOption = (id) => {
     setFormElements((elements) =>
       elements.map((el) =>
@@ -35,7 +32,6 @@ const FormBuilder = () => {
       )
     );
 
-    // Auto-focus the newly added option
     setTimeout(() => {
       const optionInputs = document.querySelectorAll(
         `.form-element[data-id="${id}"] .option input[type="text"]`
@@ -44,7 +40,6 @@ const FormBuilder = () => {
     }, 0);
   };
 
-  // Remove an option from a radio/checkbox field
   const removeOption = (id, optionIdx) => {
     setFormElements((elements) =>
       elements.map((el) =>
@@ -58,12 +53,10 @@ const FormBuilder = () => {
     );
   };
 
-  // Remove a form element
   const removeElement = (id) => {
     setFormElements((elements) => elements.filter((el) => el.id !== id));
   };
 
-  // Validate form elements before saving
   const validateForm = () => {
     for (const el of formElements) {
       if (!el.label.trim()) {
@@ -78,7 +71,6 @@ const FormBuilder = () => {
     return true;
   };
 
-  // Save the form to Firestore
   const saveForm = async () => {
     if (!validateForm()) return;
 
